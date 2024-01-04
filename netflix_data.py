@@ -11,7 +11,7 @@ netflix_df = pd.read_csv("netflix_data.csv")
 netflix_subset = netflix_df[netflix_df['type'] == 'Movie']
 
 # Investigate the Netflix movie data, keeping only the columns and save as new var 
-netflix_movies = netflix_df[["title", "country", "genre", "release_year", "duration"]]
+netflix_movies = netflix_subset[["title", "country", "genre", "release_year", "duration"]]
 
 # Filter the movies with duration less than 60 minutes
 short_movies = netflix_movies[netflix_movies.duration < 60]
@@ -31,6 +31,9 @@ for label, row in netflix_movies.iterrows():
     else:
         colors.append("green")
 
+# setting a fig
+fig = plt.figure(figsize=(14,10))
+
 # Creating a scatter plot of movies of year release against duration and colors for the c
 plt.scatter(netflix_movies.release_year, netflix_movies.duration, c=colors)
 plt.xlabel("Release Year")
@@ -39,5 +42,5 @@ plt.title("Movie Duration by Year of Release")
 
 plt.show()
 
-answer = "yes"
+answer = "maybe"
 print("Are we certain that movies are getting shorter?", answer)
